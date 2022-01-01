@@ -9,3 +9,16 @@ Steps:
 - Add the scoring logic if not already done in step 2
 - Clean up interface and design, make it pretty
 - Have a go at creating the AI opponent
+
+
+### UPDATE 1
+I've got the grid array set up, and therefore I can push an array item into an individual players scoring array. This SHOULD look something like this:
+        >player clicks a square
+        >function reads the corresponding grid array index and adds it to their tracker array
+        >scoring function then reads each players tracker array, and using if (or switch) statements: 
+            >checks to see if they have 3 in a row horizontally, vertically, diagonally
+            >ends the game if this is met
+
+So far, I can't seem to get the function to actually push the grid index into the tracker array for a single player, it keeps returning "undefinedgrid#", and then "undefinedgrid#grid#" instead of actually reading it as an array.
+
+Foundations are there, the pieces just need to click.
