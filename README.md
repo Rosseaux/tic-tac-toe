@@ -22,3 +22,6 @@ I've got the grid array set up, and therefore I can push an array item into an i
 So far, I can't seem to get the function to actually push the grid index into the tracker array for a single player, it keeps returning "undefinedgrid#", and then "undefinedgrid#grid#" instead of actually reading it as an array.
 
 Foundations are there, the pieces just need to click.
+
+### Update 3
+Array is pushing successfully to both player One and Player Two tracker arrays, groundwork is now set for scoring tests to be set.
