@@ -25,3 +25,9 @@ Foundations are there, the pieces just need to click.
 
 ### Update 3
 Array is pushing successfully to both player One and Player Two tracker arrays, groundwork is now set for scoring tests to be set.
+Have set up a test file to work on my unit testing, so far not so good, getting a weird error I can't find anywhere on Stackoverflow - problem for later, think it's my jest installation.
+
+I've got the scoring working, win-checking function working and tested (manually...) and now Its time for me to create the grid and set up the event listeners.
+Plan is to do this by setting the grid to create dynamically based on the array, then having each div styled to change cursor on hover, and event listeners to click and change the text content to a big ol' x or o. 
+
+Also need to set up a turn-based scoring system stored in a variable, i.e "playerTurn = playerOne" then on click "if playerTurn === playerOne {playerTurn = playerTwo}. Simple stuff.

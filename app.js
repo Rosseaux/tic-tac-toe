@@ -10,6 +10,9 @@ const playerTwoPlaces = {
     places: []
 }
 
+var playerOneScore = 0;
+var playerTwoScore = 0;
+
 function playerMoves(player, placement) {
     if (playerOnePlaces.places.includes(placement) || playerTwoPlaces.places.includes(placement)) {
         console.log("This space is already taken!");
@@ -37,7 +40,8 @@ function winCheck() {
     playerOnePlaces.places.includes("grid7" && "grid8" && "grid9") ||
     playerOnePlaces.places.includes("grid1" && "grid5" && "grid9") ||
     playerOnePlaces.places.includes("grid3" && "grid5" && "grid7")) {
-        console.log("PLAYER ONE WINS!!!");
+        playerOneScore++;
+        return "PLAYER ONE WINS";
     }
     if (playerTwoPlaces.places.includes("grid1"&& "grid2" && "grid3") ||
     playerTwoPlaces.places.includes("grid1" && "grid4" && "grid7") ||
@@ -47,7 +51,8 @@ function winCheck() {
     playerTwoPlaces.places.includes("grid7" && "grid8" && "grid9") ||
     playerTwoPlaces.places.includes("grid1" && "grid5" && "grid9") ||
     playerTwoPlaces.places.includes("grid3" && "grid5" && "grid7")) {
-        console.log("PLAYER TWO WINS!!!");
+        playerTwoSCore++;
+        return "PLAYER TWO WINS";
     }
 }
 
