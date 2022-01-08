@@ -3,65 +3,68 @@
 const grid = { 
         gridspaces: ["grid1", "grid2", "grid3", "grid4", "grid5", "grid6", "grid7", "grid8", "grid9"]
 }
-const playerOnePlaces = {
-    places: []
-}
-const playerTwoPlaces = {
-    places: []
-}
+const playerOnePlaces = [];
+    
+const playerTwoPlaces = [];
+
 //scoring variables
 var playerOneScore = 0;
 var playerTwoScore = 0;
 
 var playerState = "playerOne";
 
+const winSpaces = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+
 document.getElementById("playerOneScore").innerHTML += playerOneScore;
 document.getElementById("playerTwoScore").innerHTML += playerTwoScore;
 
 //function to be called when a player clicks a square
 function playerMoves(player, placement) {
-    if (playerOnePlaces.places.includes(placement) || playerTwoPlaces.places.includes(placement)) {
+    if (playerOnePlaces.includes(placement) || playerTwoPlaces.includes(placement)) {
         console.log("This space is already taken!");
     }
     else {
         if (player === "playerOne") {
-        playerOnePlaces.places.push(placement);
-        winCheck();
+        playerOnePlaces.push(placement);
         playerState = "playerTwo";
     }
         if (player === "playerTwo") {
-        playerTwoPlaces.places.push(placement);
-        winCheck();
+        playerTwoPlaces.push(placement);
         playerState = "playerOne";
     }
 }
 }
 
+
 //function called each time a move is made to see if anyone has won 
-function winCheck() {
-    if (playerOnePlaces.places.includes("grid1" && "grid2" && "grid3") ||
-    playerOnePlaces.places.includes("grid1" && "grid4" && "grid7") ||
-    playerOnePlaces.places.includes("grid2" && "grid5" && "grid8") ||
-    playerOnePlaces.places.includes("grid3" && "grid6" && "grid9") ||
-    playerOnePlaces.places.includes("grid4" && "grid5" && "grid6") ||
-    playerOnePlaces.places.includes("grid7" && "grid8" && "grid9") ||
-    playerOnePlaces.places.includes("grid1" && "grid5" && "grid9") ||
-    playerOnePlaces.places.includes("grid3" && "grid5" && "grid7")) {
-        playerOneScore++;
-        window.alert("PLAYER ONE WINS");
-    }
-    if (playerTwoPlaces.places.includes("grid1"&& "grid2" && "grid3") ||
-    playerTwoPlaces.places.includes("grid1" && "grid4" && "grid7") ||
-    playerTwoPlaces.places.includes("grid2" && "grid5" && "grid8") ||
-    playerTwoPlaces.places.includes("grid3" && "grid6" && "grid9") ||
-    playerTwoPlaces.places.includes("grid4" && "grid5" && "grid6") ||
-    playerTwoPlaces.places.includes("grid7" && "grid8" && "grid9") ||
-    playerTwoPlaces.places.includes("grid1" && "grid5" && "grid9") ||
-    playerTwoPlaces.places.includes("grid3" && "grid5" && "grid7")) {
-        playerTwoScore++;
-        window.alert("PLAYER TWO WINS");
-    }
-}
+function winCheckX() {
+    return winSpaces.some((playerOnePlaces) => {
+        return playerOnePlaces.every((i) => {
+            console.log(grid.gridspaces[i].innerText === "X");
+            return grid.gridspaces[i].innerText === "X";
+        })
+    })
+};
+
+function winCheckO() {
+    return winSpaces.some((playerTwoPlaces) => {
+        return playerTwoPlaces.every((i) => {
+            console.log(grid.gridspaces[i].innerText === "O");
+            return grid.gridspaces[i].innerText === "O";
+        })
+    })
+};
+
+
 
 //grid creation function 
 function setGrid() {
@@ -73,14 +76,23 @@ function setGrid() {
         gameBoard.appendChild(boardSpace);
         boardSpace.addEventListener("click", () => {
             playerMoves(playerState, boardSpace.id);
-            console.log(playerOnePlaces.places);
-            console.log(playerTwoPlaces.places);
-            if (playerState === "playerOne") boardSpace.innerHTML = "X";
-            if (playerState === "playerTwo") boardSpace.innerHTML = "O";
+            console.log(playerOnePlaces);
+            console.log(playerTwoPlaces);
+            if (playerState === "playerOne") {
+                boardSpace.innerText = "X";
+                winCheckX();
+                }
+            
+            if (playerState === "playerTwo") {
+                boardSpace.innerText = "O";
+                winCheckO();
+            }
+                
         })
         
     })
     
 }
+
 
 setGrid();
